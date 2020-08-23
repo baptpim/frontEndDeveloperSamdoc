@@ -13,11 +13,13 @@ import ARKit
 import SceneKit
 import UIKit
 
-class sceneViewController: UIViewController, ARSessionDelegate {
+class sceneViewController: UIViewController, ARSessionDelegate, SCNSceneRendererDelegate {
     
 
-
+    @IBOutlet weak var sceneView: SCNView!
+    
     var contentControllers: [VirtualContentType: VirtualContentController] = [:]
+    
     
     var selectedVirtualContent: VirtualContentType! {
         didSet {
@@ -29,7 +31,7 @@ class sceneViewController: UIViewController, ARSessionDelegate {
             
             // If there's an anchor already (switching content), get the content controller to place initial content.
             // Otherwise, the content controller will place it in `renderer(_:didAdd:for:)`.
-            if let anchor = currentFaceAnchor, let node = sceneView.node(for: anchor),
+            if let anchor = currentFaceAnchor,
                 let newContent = selectedContentController.renderer(sceneView, nodeFor: anchor) {
                 node.addChildNode(newContent)
             }
@@ -47,28 +49,25 @@ class sceneViewController: UIViewController, ARSessionDelegate {
     
     var currentFaceAnchor: ARFaceAnchor?
     
-    // MARK: - View Controller Life Cycle
+ 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         sceneView.delegate = self
-        sceneView.session.delegate = self
-        sceneView.automaticallyUpdatesLighting = true
+        sceneView.delegate = self
         
-        // Set the initial face content.
-        tabBar.selectedItem = tabBar.items!.first!
-        selectedVirtualContent = VirtualContentType(rawValue: tabBar.selectedItem!.tag)
+        
+       
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // AR experiences typically involve moving the device without
-        // touch input for some time, so prevent auto screen dimming.
+        
         UIApplication.shared.isIdleTimerDisabled = true
         
-        // "Reset" to run the AR session for the first time.
+        
         resetTracking()
     }
 
@@ -95,7 +94,7 @@ class sceneViewController: UIViewController, ARSessionDelegate {
         guard ARFaceTrackingConfiguration.isSupported else { return }
         let configuration = ARFaceTrackingConfiguration()
         configuration.isLightEstimationEnabled = true
-        sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+        sceneView.allowsCameraControl.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
     
     // MARK: - Error handling
@@ -112,22 +111,13 @@ class sceneViewController: UIViewController, ARSessionDelegate {
     }
 }
 
-extension ViewController: UITabBarDelegate {
-    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        guard let contentType = VirtualContentType(rawValue: item.tag)
-            else { fatalError("unexpected virtual content tag") }
-        selectedVirtualContent = contentType
-    }
-}
-
 extension ViewController: ARSCNViewDelegate {
         
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         guard let faceAnchor = anchor as? ARFaceAnchor else { return }
         currentFaceAnchor = faceAnchor
         
-        // If this is the first time with this anchor, get the controller to create content.
-        // Otherwise (switching content), will change content when setting `selectedVirtualContent`.
+        
         if node.childNodes.isEmpty, let contentNode = selectedContentController.renderer(renderer, nodeFor: faceAnchor) {
             node.addChildNode(contentNode)
         }

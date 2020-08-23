@@ -12,10 +12,10 @@ import LocalAuthentication
 class ViewController: UIViewController {
 
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var userNameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
     
  
-
-    var context = LAContext()
 
     enum AuthentificationState {
         case loggedin, loggedout
@@ -32,52 +32,80 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        context.canEvaluatePolicy(.deviceOwnerAuthentication, error: nil)
         state = .loggedout
     }
     
+   
+    
     @IBAction func TapButton(_ sender: UIButton) {
         
-        if state == .loggedin {
-
-                   
-                   state = .loggedout
-
-               } else {
-
-                   
-                   context = LAContext()
-
-                   context.localizedCancelTitle = " Username/Password"
-
-                   
-                   var error: NSError?
-                   if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
-
-                       let reason = "Log in to your account"
-                       context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason ) { success, error in
-
-                           if success {
-
-                               
-                               DispatchQueue.main.async { [unowned self] in
-                                   self.state = .loggedin
-                               }
-
-                           } else {
-                               print(error?.localizedDescription ?? "Failed to authenticate")
-
-                               
-                           }
-                       }
-                   } else {
-                       print(error?.localizedDescription ?? "Can't evaluate policy")
-
-                      
-                   }
-               }
+       // let userName = userNameTextField.text
+           let context = LAContext()
+           let password = passwordTextField.text ?? ""
+              context.setCredential(Data(password.utf8), type: .applicationPassword)
+              //let data = KeychainHelper.loadPassProtected(key: self.entryName, context: context)
+        
+        
+        /*if (userName = "" || password = "")
+        {
+            return
+        }*/
     }
     
 
+    
+    
+    static func getPwSecAccessControl() -> SecAccessControl {
+        var access: SecAccessControl?
+        var error: Unmanaged<CFError>?
+        
+        access = SecAccessControlCreateWithFlags(nil,
+            kSecAttrAccessibleWhenUnlockedThisDeviceOnly,
+            .applicationPassword,
+            &error)
+        precondition(access != nil, "SecAccessControlCreateWithFlags failed")
+        return access!
+    }
+    
+    static func createEntry(key: String, data: Data, password: String) -> OSStatus {
+        let context = LAContext()
+        context.setCredential(password.data(using: .utf8), type: .applicationPassword)
+        
+        let query = [
+            kSecClass as String            : kSecClassGenericPassword as String,
+            kSecAttrAccount as String      : key,
+            kSecAttrAccessControl as String: getPwSecAccessControl(),
+            kSecValueData as String        : data as NSData,
+            kSecUseAuthenticationContext   : context] as CFDictionary
+        
+        return SecItemAdd(query, nil)
+    }
+    
+    static func loadPassProtected(key: String, context: LAContext? = nil) -> Data? {
+        var query: [String: Any] = [
+            kSecClass as String       : kSecClassGenericPassword,
+            kSecAttrAccount as String : key,
+            kSecReturnData as String  : kCFBooleanTrue,
+            kSecAttrAccessControl as String: getPwSecAccessControl(),
+            kSecMatchLimit as String  : kSecMatchLimitOne]
+        
+        if let context = context {
+            query[kSecUseAuthenticationContext as String] = context
+            
+            // Prevent system UI from automatically requesting password
+            // if the password inside supplied context is wrong
+            query[kSecUseAuthenticationUI as String] = kSecUseAuthenticationUIFail
+        }
+        
+        var dataTypeRef: AnyObject? = nil
+        
+        let status = SecItemCopyMatching(query as CFDictionary, &dataTypeRef)
+        
+        if status == noErr {
+            return (dataTypeRef! as! Data)
+        } else {
+            return nil
+        }
+    }
 }
 

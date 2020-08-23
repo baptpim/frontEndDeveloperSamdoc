@@ -15,6 +15,17 @@
 		050B18C924ED090300432E75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 050B18C824ED090300432E75 /* Assets.xcassets */; };
 		050B18CC24ED090300432E75 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 050B18CA24ED090300432E75 /* LaunchScreen.storyboard */; };
 		057FC5F724EEA9AB00592DD2 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057FC5F624EEA9AB00592DD2 /* TableViewController.swift */; };
+		05BEDD2824F31D7B0017D38B /* sceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEDD2724F31D7B0017D38B /* sceneViewController.swift */; };
+		05BEDD2A24F31E900017D38B /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEDD2924F31E900017D38B /* Utilities.swift */; };
+		05BEDD2C24F31EAD0017D38B /* ARFaceGeometry.obj in Resources */ = {isa = PBXBuildFile; fileRef = 05BEDD2B24F31EAD0017D38B /* ARFaceGeometry.obj */; };
+		05BEDD2E24F31F2D0017D38B /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 05BEDD2D24F31F2D0017D38B /* Models.scnassets */; };
+		05BEDD3624F31F610017D38B /* TransformVisualization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEDD3024F31F610017D38B /* TransformVisualization.swift */; };
+		05BEDD3724F31F610017D38B /* FaceOcclusionOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEDD3124F31F610017D38B /* FaceOcclusionOverlay.swift */; };
+		05BEDD3824F31F610017D38B /* VideoTexturedFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEDD3224F31F610017D38B /* VideoTexturedFace.swift */; };
+		05BEDD3924F31F610017D38B /* VirtualContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEDD3324F31F610017D38B /* VirtualContent.swift */; };
+		05BEDD3A24F31F610017D38B /* TexturedFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEDD3424F31F610017D38B /* TexturedFace.swift */; };
+		05BEDD3B24F31F610017D38B /* BlendShapeCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEDD3524F31F610017D38B /* BlendShapeCharacter.swift */; };
+		05BEDD3D24F3245F0017D38B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEDD3C24F3245F0017D38B /* TableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +39,17 @@
 		050B18CB24ED090300432E75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		050B18CD24ED090400432E75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		057FC5F624EEA9AB00592DD2 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		05BEDD2724F31D7B0017D38B /* sceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sceneViewController.swift; sourceTree = "<group>"; };
+		05BEDD2924F31E900017D38B /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		05BEDD2B24F31EAD0017D38B /* ARFaceGeometry.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ARFaceGeometry.obj; sourceTree = "<group>"; };
+		05BEDD2D24F31F2D0017D38B /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
+		05BEDD3024F31F610017D38B /* TransformVisualization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformVisualization.swift; sourceTree = "<group>"; };
+		05BEDD3124F31F610017D38B /* FaceOcclusionOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceOcclusionOverlay.swift; sourceTree = "<group>"; };
+		05BEDD3224F31F610017D38B /* VideoTexturedFace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoTexturedFace.swift; sourceTree = "<group>"; };
+		05BEDD3324F31F610017D38B /* VirtualContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualContent.swift; sourceTree = "<group>"; };
+		05BEDD3424F31F610017D38B /* TexturedFace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TexturedFace.swift; sourceTree = "<group>"; };
+		05BEDD3524F31F610017D38B /* BlendShapeCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlendShapeCharacter.swift; sourceTree = "<group>"; };
+		05BEDD3C24F3245F0017D38B /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,17 +82,60 @@
 		050B18BB24ED090200432E75 /* samdocapp */ = {
 			isa = PBXGroup;
 			children = (
+				05D271CB24F0002D00DCA5D7 /* view */,
+				052AD2B624EEB90D002249B5 /* model */,
+				052AD2B524EEB8BF002249B5 /* controlller */,
 				050B18BC24ED090200432E75 /* AppDelegate.swift */,
 				050B18BE24ED090200432E75 /* SceneDelegate.swift */,
-				050B18C024ED090200432E75 /* ViewController.swift */,
-				050B18C224ED090200432E75 /* Main.storyboard */,
 				050B18C824ED090300432E75 /* Assets.xcassets */,
+				05BEDD2D24F31F2D0017D38B /* Models.scnassets */,
 				050B18CA24ED090300432E75 /* LaunchScreen.storyboard */,
 				050B18CD24ED090400432E75 /* Info.plist */,
-				050B18C524ED090200432E75 /* samdocapp.xcdatamodeld */,
 				057FC5F624EEA9AB00592DD2 /* TableViewController.swift */,
 			);
 			path = samdocapp;
+			sourceTree = "<group>";
+		};
+		052AD2B524EEB8BF002249B5 /* controlller */ = {
+			isa = PBXGroup;
+			children = (
+				05BEDD2924F31E900017D38B /* Utilities.swift */,
+				050B18C024ED090200432E75 /* ViewController.swift */,
+				05BEDD2724F31D7B0017D38B /* sceneViewController.swift */,
+				05BEDD3C24F3245F0017D38B /* TableViewController.swift */,
+			);
+			path = controlller;
+			sourceTree = "<group>";
+		};
+		052AD2B624EEB90D002249B5 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				050B18C524ED090200432E75 /* samdocapp.xcdatamodeld */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		05BEDD2F24F31F610017D38B /* Face Overlay Content */ = {
+			isa = PBXGroup;
+			children = (
+				05BEDD3024F31F610017D38B /* TransformVisualization.swift */,
+				05BEDD3124F31F610017D38B /* FaceOcclusionOverlay.swift */,
+				05BEDD3224F31F610017D38B /* VideoTexturedFace.swift */,
+				05BEDD3324F31F610017D38B /* VirtualContent.swift */,
+				05BEDD3424F31F610017D38B /* TexturedFace.swift */,
+				05BEDD3524F31F610017D38B /* BlendShapeCharacter.swift */,
+			);
+			path = "Face Overlay Content";
+			sourceTree = "<group>";
+		};
+		05D271CB24F0002D00DCA5D7 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				050B18C224ED090200432E75 /* Main.storyboard */,
+				05BEDD2B24F31EAD0017D38B /* ARFaceGeometry.obj */,
+				05BEDD2F24F31F610017D38B /* Face Overlay Content */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,7 +197,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				050B18CC24ED090300432E75 /* LaunchScreen.storyboard in Resources */,
+				05BEDD2C24F31EAD0017D38B /* ARFaceGeometry.obj in Resources */,
 				050B18C924ED090300432E75 /* Assets.xcassets in Resources */,
+				05BEDD2E24F31F2D0017D38B /* Models.scnassets in Resources */,
 				050B18C424ED090200432E75 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,9 +211,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05BEDD3924F31F610017D38B /* VirtualContent.swift in Sources */,
+				05BEDD3D24F3245F0017D38B /* TableViewController.swift in Sources */,
 				050B18C124ED090200432E75 /* ViewController.swift in Sources */,
+				05BEDD3724F31F610017D38B /* FaceOcclusionOverlay.swift in Sources */,
+				05BEDD2824F31D7B0017D38B /* sceneViewController.swift in Sources */,
+				05BEDD2A24F31E900017D38B /* Utilities.swift in Sources */,
+				05BEDD3A24F31F610017D38B /* TexturedFace.swift in Sources */,
 				050B18BD24ED090200432E75 /* AppDelegate.swift in Sources */,
+				05BEDD3824F31F610017D38B /* VideoTexturedFace.swift in Sources */,
 				050B18C724ED090200432E75 /* samdocapp.xcdatamodeld in Sources */,
+				05BEDD3624F31F610017D38B /* TransformVisualization.swift in Sources */,
+				05BEDD3B24F31F610017D38B /* BlendShapeCharacter.swift in Sources */,
 				057FC5F724EEA9AB00592DD2 /* TableViewController.swift in Sources */,
 				050B18BF24ED090200432E75 /* SceneDelegate.swift in Sources */,
 			);
